@@ -25,6 +25,7 @@ i=0
 
 #Meio para locomover livrimente dentro do laço de repetição.
 retornar=0
+saldo=0
 
 
 while True:
@@ -60,17 +61,23 @@ while True:
             if login in Usuario.email and key in Usuario.senha and retornar==1:
                 print('Bem Vindo!')
                 retornar=3
-                if retornar==3:
+        
+    if retornar==3:
 
-                    Objetivo=input('Aperte no número ao lado da ação desejada \n [1]Saldo  [2]Médias [3]Transações [4]Dados Usuário [5]Sair da conta\n')
+        Objetivo=input('Aperte no número ao lado da ação desejada \n [1]Saldo  [2]Médias [3]Transações [4]Vizualisar Dados [5]Sair da conta\n')
 
-                    if Objetivo=='5' or Objetivo == '[5]':
-                        retornar=0
+        if Objetivo=='1':
+            
 
-                    else: 
-                        print('Digite valor válido!')
-                        retornar=1
-                        #Não consegui voltar em 'objetivo' utilizando a variável retornar
+            infSaldo=input('Informe o saldo')
+
+        if Objetivo=='5' or Objetivo == '[5]':
+            retornar=0
+
+        elif Objetivo!='1' or Objetivo!='2' or Objetivo!='3' or Objetivo!='4' or Objetivo!='5':
+            print('Digite valor válido!')
+            retornar=3
+            #Não consegui voltar em 'objetivo' utilizando a variável retornar
 
         if LogCAD=='2' or LogCAD=='Terminar' or LogCAD=='02':
             certeza=input('Confirmar ação [sim] ou [voltar]')
