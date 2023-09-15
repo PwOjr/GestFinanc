@@ -31,38 +31,46 @@ while True:
 
     if retornar==0:
         login=str
-        LogCAD=input('Aperte no número ao lado da ação desejada \n [0]Login [1]Cadastrar  [2]Terminar\n')
+        LogCAD=input('Aperte no número ao lado da ação desejada \n[0]Cadastrar [1]Login  [2]Terminar\n')
         i+=1
 
-        if LogCAD=='0' or LogCAD=='Login':
-            login=str(input('email: '))
-            retornar=1
-
-            if login in cadastro:
-                print('Bem Vindo!')
-                retornar=3 
-
-            else:
-                print('Email não registrado')
-                retornar=0
-
-
-        if LogCAD=='1' or LogCAD=='Cadastrar' or LogCAD=='Cadastro':
+        if LogCAD=='0' or LogCAD=='Cadastrar' or LogCAD=='Cadastro':
             retornar=2
             cadastro.append(RegUsuario)
-            Usuario.nome= str(input('nome: '))
+            Usuario.nome= input('nome: ')
             Usuario.cpf= int(input(' CPF: '))
-            Usuario.email=str(input('Email '))
+            Usuario.email=(input('Email '))
             print('\nSenha:')
-            Usuario.senha=str(input('***** '))
+            Usuario.senha=input('***** ')
             print('\nConfirme:')
-            Usuario.confsenha=str(input('***** '))
+            Usuario.confsenha=input('***** ')
 
             if Usuario.senha==Usuario.confsenha:
                 cadastro.append(Usuario)
                 print('Cadastro conclído')
                 print(cadastro)
                 retornar=0
+
+
+        if LogCAD=='1' or LogCAD=='Login':
+            login=input('email: ')
+            key=input('Senha')
+            retornar=1
+
+            if login in Usuario.email and key in Usuario.senha and retornar==1:
+                print('Bem Vindo!')
+                retornar=3
+                if retornar==3:
+
+                    Objetivo=input('Aperte no número ao lado da ação desejada \n [1]Saldo  [2]Médias [3]Transações [4]Dados Usuário [5]Sair da conta\n')
+
+                    if Objetivo=='5' or Objetivo == '[5]':
+                        retornar=0
+
+                    else: 
+                        print('Digite valor válido!')
+                        retornar=1
+                        #Não consegui voltar em 'objetivo' utilizando a variável retornar
 
         if LogCAD=='2' or LogCAD=='Terminar' or LogCAD=='02':
             certeza=input('Confirmar ação [sim] ou [voltar]')
@@ -72,6 +80,10 @@ while True:
 
             if certeza=='voltar':
                 retornar=0
+
+    else:
+        print('Digite valor válido!')
+        retornar=0
 
 #Saídas provisórias
 print('Informações do usuário:', Usuario)
