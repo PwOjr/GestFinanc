@@ -14,8 +14,6 @@ class RegUsuario:
     senha: str=''
     confsenha: str=''
 
-#criando objeto (usuário) pertecente a classe Registro de Usuário
-Usuario=RegUsuario()
 
 #Vetor responsável por cadastrar as informações de cada usuário.
 cadastro=[]
@@ -25,46 +23,44 @@ i=0
 
 #Meio para locomover livrimente dentro do laço de repetição.
 retornar=0
+saldo=0
 
 
 while True:
 
     if retornar==0:
         login=str
-        LogCAD=input('Aperte no número ao lado da ação desejada \n [0]Login [1]Cadastrar  [2]Terminar\n')
-        i+=1
+        alternativa=input('Aperte no número ao lado da ação desejada \n[0]Cadastrar [1]Login  [2]Terminar\n')
 
-        if LogCAD=='0' or LogCAD=='Login':
-            login=str(input('email: '))
-            retornar=1
-
-            if login in cadastro:
-                print('Bem Vindo!')
-                retornar=3 
-
-            else:
-                print('Email não registrado')
-                retornar=0
-
-
-        if LogCAD=='1' or LogCAD=='Cadastrar' or LogCAD=='Cadastro':
-            retornar=2
-            cadastro.append(RegUsuario)
-            Usuario.nome= str(input('nome: '))
-            Usuario.cpf= int(input(' CPF: '))
-            Usuario.email=str(input('Email '))
-            print('\nSenha:')
-            Usuario.senha=str(input('***** '))
+        if alternativa=='0' or alternativa=='Cadastrar' or alternativa=='Cadastro':
+            
+            cadastro.append(RegUsuario())
+            cadastro[i].nome=input('Nome: ')
+            cadastro[i].cpf= int(input(' CPF: '))
+            cadastro[i].email=(input('Email: '))
+            print('\nSenha: ')
+            Senha=input('***** ')
             print('\nConfirme:')
-            Usuario.confsenha=str(input('***** '))
+            confirmar=input('***** ')
 
-            if Usuario.senha==Usuario.confsenha:
-                cadastro.append(Usuario)
+            if Senha==confirmar:
+                cadastro[i].senha=Senha
                 print('Cadastro conclído')
                 print(cadastro)
+                i+=1
                 retornar=0
 
-        if LogCAD=='2' or LogCAD=='Terminar' or LogCAD=='02':
+
+        if alternativa=='1' or alternativa=='Login':
+            login=input('email: ')
+            key=input('Senha: ')
+
+            for a in range(i):
+                if login in cadastro[a].email and key in cadastro[a].senha:
+                    print('Bem Vindo!')
+                    retornar=1
+        
+        if alternativa=='2' or alternativa=='Terminar' or alternativa=='02':
             certeza=input('Confirmar ação [sim] ou [voltar]')
 
             if certeza=='sim':
@@ -72,8 +68,28 @@ while True:
 
             if certeza=='voltar':
                 retornar=0
+        
+    elif retornar==1:
+
+        Objetivo=input('Aperte no número ao lado da ação desejada \n [1]Saldo  [2]Médias [3]Transações [4]Vizualisar Dados [5]Sair da conta\n')
+
+        if Objetivo=='1':
+            
+
+            infSaldo=input('Informe o saldo')
+
+        if Objetivo=='5' or Objetivo == '[5]':
+            retornar=0
+
+        elif Objetivo!='1' or Objetivo!='2' or Objetivo!='3' or Objetivo!='4' or Objetivo!='5':
+            print('Digite valor válido!')
+            retornar=1
+
+
+    else:
+        print('Digite valor válido!')
+        retornar=0
 
 #Saídas provisórias
-print('Informações do usuário:', Usuario)
 print('Usuários cadastrados: ',cadastro)
 print(RegUsuario)
